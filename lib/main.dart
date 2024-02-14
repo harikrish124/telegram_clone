@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telegram_clone/api.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,6 +13,21 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  Api a1 = Api();
+  List<dynamic> data = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    List<dynamic> newData = await a1.getdata();
+    setState(() {
+      data = newData;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
