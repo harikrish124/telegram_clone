@@ -30,7 +30,9 @@ class MainApp extends StatelessWidget {
               color: Colors.white,
             )
           ],
+
         ),
+        body:ListView.separated(itemBuilder:, separatorBuilder: , itemCount: itemCount)
       ),
     );
   }
