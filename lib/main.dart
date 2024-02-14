@@ -52,6 +52,18 @@ class _MainAppState extends State<MainApp> {
             )
           ],
         ),
+        body: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (BuildContext context, int index) {
+            // Assuming your data is a list of strings, you can display them like this
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(data[index].image),
+              ),
+              title: Text(data[index].toString()),
+            );
+          },
+        ),
       ),
     );
   }
