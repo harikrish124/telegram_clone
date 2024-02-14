@@ -4,9 +4,14 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,9 +35,7 @@ class MainApp extends StatelessWidget {
               color: Colors.white,
             )
           ],
-
         ),
-        body:ListView.separated(itemBuilder:, separatorBuilder: , itemCount: itemCount)
       ),
     );
   }
