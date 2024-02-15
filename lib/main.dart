@@ -22,10 +22,17 @@ class _MainAppState extends State<MainApp> {
   }
 
   Future<void> fetchData() async {
-    List<dynamic> newData = await a1.getdata();
-    setState(() {
-      data = newData;
-    });
+    Map<String, dynamic> response = await a1.getdata();
+
+    if (response.containsKey('results')) {
+      List<dynamic> newData = response['results'];
+      setState(() {
+        data = newData;
+      });
+      print("fetch completed");
+    } else {
+      print("Error in API response");
+    }
   }
 
   @override
@@ -55,12 +62,18 @@ class _MainAppState extends State<MainApp> {
         body: ListView.builder(
           itemCount: data.length,
           itemBuilder: (BuildContext context, int index) {
+            final fname = data[index]['name']['first'];
+            final lname = data[index]['name']['last'];
+            final name = '$fname $lname';
+
+            final image = data[index]['picture']['thumbnail'];
             // Assuming your data is a list of strings, you can display them like this
             return ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(data[index].image),
+                backgroundImage: NetworkImage(image),
               ),
-              title: Text(data[index].toString()),
+              title: Text(name),
+              subtitle: Text(name),
             );
           },
         ),
